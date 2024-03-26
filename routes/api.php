@@ -10,10 +10,15 @@ Route::get('/user', function (Request $request) {
 
 Route::controller(CountryController::class)->group(function () {
     Route::post('/countries', 'index');
-    Route::post('/country/{id}', 'store');
-    Route::get('/country/{id}', 'show');
-    Route::delete('/country/{id}', 'destroy');
+    Route::post('/country/{id}', 'store')->whereUuid('id');
+    Route::get('/country/{id}', 'show')->whereUuid('id');
+    Route::delete('/country/{id}', 'destroy')->whereUuid('id');
 });
+
+Route::get('/report/{month}', function (Request $request) {
+    //TODO: Generates report for a given month
+})->whereNumber('month');
+
 
 Route::get('/generate', function () {
     //TODO: Launch seeders here

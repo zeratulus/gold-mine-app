@@ -12,7 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('countries', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->string('name')->index();
+            $table->integer('plan');
+            $table->string('weight_unit', 2); //kg, T according to task
             $table->timestamps();
         });
     }

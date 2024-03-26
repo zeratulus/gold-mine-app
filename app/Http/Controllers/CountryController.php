@@ -9,7 +9,7 @@ use App\Http\Requests\UpdateCountryRequest;
 class CountryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * TODO: List All countries
      */
     public function index()
     {
@@ -25,11 +25,11 @@ class CountryController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * You may create country using this action. It takes a JSON object containing country name and plan.
      */
     public function store(StoreCountryRequest $request)
     {
-        //
+        //TODO: Create
     }
 
     /**
@@ -49,18 +49,18 @@ class CountryController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * You may update country using this action. It takes a JSON object containing country name and plan.
      */
     public function update(UpdateCountryRequest $request, Country $country)
     {
-        //
+        //TODO: Update
     }
 
     /**
-     * Remove the specified resource from storage.
+     * You may delete country using this action
      */
     public function destroy(Country $country)
     {
-        //
+        //TODO: Delete
     }
 }
