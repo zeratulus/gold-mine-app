@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Country extends Model
+class Company extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'plan',
-        'weight_unit'
+        'email',
+        'country_id'
     ];
 
     public $keyType = 'string';

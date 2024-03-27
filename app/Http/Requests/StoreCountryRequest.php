@@ -22,7 +22,9 @@ class StoreCountryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required'],
+            'plan' => ['required'],
+            'weight_unit' => ['required'],
         ];
     }
 }

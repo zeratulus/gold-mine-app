@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateCountryRequest extends FormRequest
+class StoreCompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class UpdateCountryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'plan' => ['required'],
-            'weight_unit' => ['required'],
+            'name' => ['required|unique'],
+            'email' => ['required'],
+            'country_id' => ['required'],
         ];
     }
 }

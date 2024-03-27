@@ -2,26 +2,26 @@
 
 namespace App\Policies;
 
-use App\Models\Country;
+use App\Models\Mining;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class CountryPolicy
+class MiningPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        //
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Country $country): bool
+    public function view(User $user, Mining $mining): bool
     {
-        return true;
+        //
     }
 
     /**
@@ -29,38 +29,38 @@ class CountryPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        //
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Country $country): bool
+    public function update(User $user, Mining $mining): bool
     {
-        return true;
+        //
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Country $country): bool
+    public function delete(User $user, Mining $mining): bool
     {
-        return true;
+        //
     }
 
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Country $country): bool
+    public function restore(User $user, Mining $mining): bool
     {
-        return true;
+        //
     }
 
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Country $country): bool
+    public function forceDelete(User $user, Mining $mining): bool
     {
-        return true;
+        //
     }
 }

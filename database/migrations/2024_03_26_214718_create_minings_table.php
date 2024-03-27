@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('minings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->index();
-            $table->integer('plan');
-            $table->string('weight_unit', 2); //kg, T according to task
+            $table->foreignUuid('company_id')->references('id')->on('companies');
+            $table->integer('mined');
+            $table->string('weight_unit', 2);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('minings');
     }
 };

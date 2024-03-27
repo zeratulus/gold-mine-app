@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Country extends Model
+class Mining extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'plan',
+        'company_id',
+        'mined',
         'weight_unit'
     ];
 
@@ -27,5 +27,4 @@ class Country extends Model
             $model->id = (string)Str::uuid();
         });
     }
-
 }
