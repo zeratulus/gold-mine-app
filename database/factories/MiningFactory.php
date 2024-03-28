@@ -21,20 +21,14 @@ class MiningFactory extends Factory
     {
         $company = Company::all()->random();
 
-        $weightUnitInt = fake()->numberBetween(0, 2);
-        $weightUnit = WeightUnit::intToWeight($weightUnitInt);
-        if ($weightUnit == WeightUnit::WU_GRAMS || $weightUnit == WeightUnit::WU_KGS) {
-            $planRange = [100, 999];
-        } else {
-            $planRange = [1, 10];
-        }
+        $planRange = [100, 10000000]; //from 100 grams to 10 tons
 
         $randomMonth = fake()->numberBetween(1, 6);
 
         return [
             'company_id' => $company->id,
             'mined' => fake()->numberBetween($planRange[0], $planRange[1]),
-            'weight_unit' => $weightUnit,
+            'weight_unit' => WeightUnit::WU_GRAMS,
             'created_at' => Carbon::now()->subMonths($randomMonth)
         ];
     }

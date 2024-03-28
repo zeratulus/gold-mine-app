@@ -19,4 +19,23 @@ class WeightUnit
         };
     }
 
+    public static function getUserFriendlyWeight(int $weightGrams): string
+    {
+        $unit = self::WU_GRAMS;
+        $weight = $weightGrams;
+
+        $strLength = strlen((string)$weight);
+        if ($strLength >= 7) {
+            $unit = WeightUnit::WU_TONS;
+            $weight = round($weight / 1000 / 1000, 2);
+        }
+
+        if ($strLength < 7 && $strLength >= 4) {
+            $unit = WeightUnit::WU_KGS;
+            $weight = round($weight / 1000, 2);
+        }
+
+        return "$weight $unit";
+    }
+
 }

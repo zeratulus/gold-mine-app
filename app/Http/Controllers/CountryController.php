@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\WeightUnit;
 use App\Models\Country;
 use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
@@ -14,7 +15,13 @@ class CountryController extends Controller
      */
     public function index()
     {
-        return Country::all();
+        $results = [];
+        foreach (Country::all() as $country) {
+            $item = $country;
+            $item->plan = WeightUnit::getUserFriendlyWeight($country->plan);
+            $results[$item->id] = $item;
+        }
+        return $results;
     }
 
     /**

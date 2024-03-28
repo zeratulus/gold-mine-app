@@ -5,10 +5,10 @@
 <template>
     <nav class="nav navbar navbar-light">
         <div class="container">
-            <RouterLink to="/">Home</RouterLink>
             <RouterLink to="/companies">Companies</RouterLink>
             <RouterLink to="/countries">Countries</RouterLink>
             <RouterLink to="/leaders">Leaders</RouterLink>
+            <RouterLink to="/about">About</RouterLink>
         </div>
     </nav>
     <div class="container-fluid">

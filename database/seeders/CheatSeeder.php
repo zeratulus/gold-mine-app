@@ -3,10 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
-use App\Models\Country;
 use App\Models\Mining;
 use Database\Factories\MiningFactory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CheatSeeder extends Seeder
@@ -16,11 +14,15 @@ class CheatSeeder extends Seeder
      */
     public function run(): void
     {
-        //This is for sure that all company has 1 mining
+        $factory = new MiningFactory();
+        //This is for sure that all company has 1 mining each month
         foreach (Company::all() as $company) {
-            $miningData = (new MiningFactory)->definition();
-            $miningData['id'] = $company->id;
-            (new Mining)->fill($miningData)->save();
+            for ($i = 0; $i < 7; $i++) {
+                $miningData = $factory->definition();
+                $miningData['company_id'] = $company->id;
+                $miningData['created_at'] = date("Y-m-d H:i:s", strtotime("-$i months"));
+                (new Mining)->fill($miningData)->save();
+            }
         }
     }
 }

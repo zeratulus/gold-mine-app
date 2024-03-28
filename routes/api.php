@@ -3,6 +3,8 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CountryController;
 use App\Models\Country;
+use App\Services\ServiceReportCompanies;
+use App\Services\ServiceReportCountries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -33,11 +35,12 @@ Route::controller(CompanyController::class)->group(function () {
     Route::delete('/companies/{uuid}', 'destroy')->whereUuid('uuid');
 });
 
-Route::get('/report/{month}', function (Request $request) {
-    //TODO: Generates report for a given month
-    if ($month = 0) $month = 1;
+Route::get('/report_countries/{month}', function ($month) {
+    return (new ServiceReportCountries)->handle($month);
+})->whereNumber('month');
 
-
+Route::get('/report_companies/{month}', function ($month) {
+    return (new ServiceReportCompanies)->handle($month);
 })->whereNumber('month');
 
 Route::get('/generate', function () {

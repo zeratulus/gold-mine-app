@@ -17,18 +17,12 @@ class CountryFactory extends Factory
      */
     public function definition(): array
     {
-        $weightUnitInt = fake()->numberBetween(0, 2);
-        $weightUnit = WeightUnit::intToWeight($weightUnitInt);
-        if ($weightUnit == WeightUnit::WU_GRAMS || $weightUnit == WeightUnit::WU_KGS) {
-            $planRange = [100, 999];
-        } else {
-            $planRange = [1, 10];
-        }
+        $planRange = [100, 10000000]; //from 100 grams to 10 tons
 
         return [
             'name' => fake()->country(),
             'plan' => fake()->numberBetween($planRange[0], $planRange[1]),
-            'weight_unit' => $weightUnit
+            'weight_unit' => WeightUnit::WU_GRAMS
         ];
     }
 }

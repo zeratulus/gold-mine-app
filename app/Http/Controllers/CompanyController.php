@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCompanyRequest;
-use App\Http\Requests\StoreCountryRequest;
 use App\Models\Company;
 use App\Http\Requests\UpdateCompanyRequest;
 use Illuminate\Http\Response;
@@ -15,7 +14,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return Company::all();
+        return Company::all()->keyBy('id');
     }
 
     /**

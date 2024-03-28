@@ -78,6 +78,7 @@ export default {
         this.getCountries();
         this.getCompanies();
 
+        //MDB routine
         this.companyModalEl = document.getElementById('companyModal');
         this.companyModalEl.addEventListener('hidden.mdb.modal', (e) => {
             this.isAdd = false;

@@ -12,8 +12,8 @@ export default {
         const country = ref({
             id: '',
             name: '',
-            plan: 1,
-            weight_unit: 'kg'
+            plan: 100,
+            weight_unit: 'g'
         });
         const editModal = ref(false);
         const editModalEl = ref(false);
@@ -70,12 +70,13 @@ export default {
     mounted() {
         this.getCountries();
 
+        //MDB routine
         this.editModalEl = document.getElementById('countryEditModal');
         this.editModalEl.addEventListener('hidden.mdb.modal', (e) => {
             this.isAdd = false;
             this.country.name = '';
             this.country.plan = 1;
-            this.country.weight_unit = 'kg';
+            this.country.weight_unit = 'g';
         });
 
         this.editModal = new Modal(this.editModalEl);
@@ -99,7 +100,7 @@ export default {
             <tbody v-if="this.countries !== false">
                 <tr v-for="countryItem in this.countries">
                     <td>{{ countryItem.name }}</td>
-                    <td>{{ countryItem.plan }} {{ countryItem.weight_unit }}</td>
+                    <td>{{ countryItem.plan }}</td>
                     <td>
                         <button class="btn btn-primary mr-2" data-mdb-ripple-init data-mdb-modal-init data-mdb-target="#countryEditModal" v-on:click="showEditModal(countryItem.id)">Edit</button>
                         <button class="btn btn-danger" data-mdb-ripple-init @click="deleteCountry(countryItem.id)">Delete</button>
@@ -136,17 +137,8 @@ export default {
 
                         <!-- Email input -->
                         <div data-mdb-input-init class="mb-4">
-                            <label class="form-label" for="input-plan">Plan</label>
-                            <input v-model="this.country.plan" type="number" id="input-plan" class="form-control" min="1" step="1" max="10" required />
-                        </div>
-
-                        <div class="mb-4">
-                            <label class="form-label" for="input-weight">Plan</label>
-                            <select v-model="this.country.weight_unit" id="input-weight" class="form-control" required >
-                                <option value="g">Grams</option>
-                                <option value="kg">Kilograms</option>
-                                <option value="T">Tons</option>
-                            </select>
+                            <label class="form-label" for="input-plan">Plan in grams</label>
+                            <input v-model="this.country.plan" type="number" id="input-plan" class="form-control" min="100" step="100" max="10000000" required />
                         </div>
 
                     </form>

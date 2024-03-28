@@ -14,6 +14,7 @@ class Mining extends Model
         'company_id',
         'mined',
         'weight_unit',
+        'created_at'
     ];
 
     public $keyType = 'string';
