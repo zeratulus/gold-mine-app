@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,10 +17,13 @@ class CompanyFactory extends Factory
      */
     public function definition(): array
     {
+        $countries = Country::all();
+        $country = $countries->random();
+
         return [
             'name' => fake()->company(),
             'email' => fake()->unique()->companyEmail(),
-            'country_id' => '' //TODO
+            'country_id' => $country->id
         ];
     }
 }

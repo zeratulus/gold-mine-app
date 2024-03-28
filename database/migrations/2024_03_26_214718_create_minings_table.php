@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('minings', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignUuid('company_id')->references('id')->on('companies');
+            $table->uuid('company_id')->references('id')->on('companies');
             $table->integer('mined');
             $table->string('weight_unit', 2);
             $table->timestamps();

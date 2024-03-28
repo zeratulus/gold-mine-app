@@ -3,10 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <title>Gold Mine App - Just Another Test =]</title>
         @vite(['resources/js/app.js'])
+        @vite(['resources/sass/app.scss'])
     </head>
     <body id="app">
-        <example-component>
+        <app></app>
     </body>
 </html>

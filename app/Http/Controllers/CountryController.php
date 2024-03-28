@@ -5,23 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Http\Requests\StoreCountryRequest;
 use App\Http\Requests\UpdateCountryRequest;
+use Illuminate\Http\Response;
 
 class CountryController extends Controller
 {
     /**
-     * TODO: List All countries
+     * List All countries
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+        return Country::all();
     }
 
     /**
@@ -29,38 +22,57 @@ class CountryController extends Controller
      */
     public function store(StoreCountryRequest $request)
     {
-        //TODO: Create
+        $validated = $request->validated();
+        if ($validated) {
+            $country = (new Country())->fill($validated);
+            $country->save();
+            return response($country, Response::HTTP_CREATED);
+        }
+
+        return $validated;
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Country $country)
+    public function show(string $uuid)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Country $country)
-    {
-        //
+        $country = Country::find($uuid);
+        if ($country) {
+            return response($country, Response::HTTP_OK);
+        } else {
+            return response(['errors' => 'Country not found'], 404);
+        }
     }
 
     /**
      * You may update country using this action. It takes a JSON object containing country name and plan.
      */
-    public function update(UpdateCountryRequest $request, Country $country)
+    public function update(UpdateCountryRequest $request, string $uuid)
     {
-        //TODO: Update
+        $country = Country::find($uuid);
+        if (!$country) {
+            return response(["errors" => ["id" => "Not found"]], 404);
+        }
+
+        $validated = $request->validated();
+        if ($validated) {
+            $country->fill($validated)->save();
+            return response($country, Response::HTTP_OK);
+        } else {
+            return response($validated, 422);
+        }
     }
 
     /**
      * You may delete country using this action
      */
-    public function destroy(Country $country)
+    public function destroy(string $uuid)
     {
-        //TODO: Delete
+        $country = Country::find($uuid);
+        if ($country) {
+            $country->delete();
+            return response("", 204);
+        } else {
+            return response(['errors' => 'Country not found'], 404);
+        }
     }
+
 }

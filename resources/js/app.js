@@ -6,6 +6,13 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
+import router from './routes';
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import process from 'process';
+
+// import * as mdb from 'mdb-ui-kit'; // lib
+// window.mdb = mdb;
 
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
@@ -26,6 +33,14 @@ const app = createApp({});
 Object.entries(import.meta.glob('./**/*.vue', { eager: true })).forEach(([path, definition]) => {
     app.component(path.split('/').pop().replace(/\.\w+$/, ''), definition.default);
 });
+
+axios.defaults.baseURL = process.env.APP_URL || 'http://localhost:8000/';
+const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+axios.defaults.headers.common['X-XSRF-TOKEN'] = token;
+
+app.use(router);
+app.use(VueAxios, axios)
 
 /**
  * Finally, we will attach the application instance to a HTML element with

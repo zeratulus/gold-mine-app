@@ -1,3 +1,21 @@
+# Configuration
+- composer i
+- npm i
+- docker compose up (next usage: docker compose start/stop)
+- copy .env.dev -> .env at root of repository
+- php artisan key:generate
+- Set correct DB connection config (dev env bellow): 
+  - DB_CONNECTION=pgsql
+  - DB_HOST: localhost
+  - DB_PORT: 5432
+  - DB_DATABASE=postgres
+  - DB_USERNAME=postgres
+  - DB_PASSWORD=postgres
+- php artisan migrate:install
+- php artisan migrate:refresh
+- npm run dev || npm run build
+- php artisan serve
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">

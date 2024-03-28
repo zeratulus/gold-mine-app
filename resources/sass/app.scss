@@ -5,4 +5,46 @@
 @import 'variables';
 
 // Bootstrap
-@import 'bootstrap/scss/bootstrap';
+//@import 'bootstrap/scss/bootstrap';
+
+@import "mdb-ui-kit/src/scss/mdb.free";
+
+#preloader {
+    width: 100%;
+    height: 100vh;
+    z-index: 99999;
+    background-color: rgba(0,0,0,.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side,#474bff 94%,#0000) top/9px 9px no-repeat,
+    conic-gradient(#0000 30%,#474bff);
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 9px),#000 0);
+    animation: spinner-rotate 1s infinite linear;
+}
+
+@keyframes spinner-rotate {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+table thead tr td {
+    font-weight: bold;
+}
+
+.mr-2 {
+    margin-right: 2em;
+}
+.ml-2 {
+    margin-left: 2em;
+}

@@ -13,7 +13,7 @@ class Mining extends Model
     protected $fillable = [
         'company_id',
         'mined',
-        'weight_unit'
+        'weight_unit',
     ];
 
     public $keyType = 'string';
